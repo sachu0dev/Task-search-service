@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import userRoter from "./routes/user";
 import { errorMiddleware } from "./middlewares/error";
+import { connectDB } from "./utils/features";
 
 const app = express();
 const port = 3000;
@@ -17,6 +18,8 @@ app.use(
     credentials: true,
   })
 );
+
+connectDB(process.env.MONGO_URI as string);
 
 // routes
 app.get("/", (req, res) => {

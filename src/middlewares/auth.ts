@@ -5,6 +5,7 @@ import { TryCatch } from "./error";
 const isAuthenticated = TryCatch(
   async (req: Request, res: Response, next: NextFunction) => {
     return next(new ErrorHandler("Unauthenticated", 401));
+    // next();
   }
 );
 

@@ -19,7 +19,6 @@ const userSchema: Schema<IUser> = new Schema({
   },
 });
 
-// Middleware to hash the password before saving
 userSchema.pre<IUser>("save", async function (next: HookNextFunction) {
   if (!this.isModified("password")) return next();
   try {
@@ -30,5 +29,4 @@ userSchema.pre<IUser>("save", async function (next: HookNextFunction) {
   }
 });
 
-// Export the User model
 export const User = mongoose.models.User || model<IUser>("User", userSchema);

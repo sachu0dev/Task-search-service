@@ -1,5 +1,4 @@
 import { TryCatch } from "../middlewares/error";
-import { ErrorHandler } from "../utils/utility";
 
 const newUser = TryCatch(async (req, res, next) => {
   res.json({ message: "user create route" });
