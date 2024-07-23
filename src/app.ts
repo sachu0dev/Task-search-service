@@ -5,6 +5,7 @@ import cors from "cors";
 import userRoter from "./routes/user";
 import { errorMiddleware } from "./middlewares/error";
 import { connectDB } from "./utils/features";
+import createUser from "./seeders/user";
 
 const app = express();
 const port = 3000;
