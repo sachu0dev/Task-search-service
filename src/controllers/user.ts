@@ -9,4 +9,8 @@ const searchUser = TryCatch(async (req, res, next) => {
   res.send(`Searching for user: ${query}`);
 });
 
+
+
+const u
+
 export { newUser, searchUser };
