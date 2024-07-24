@@ -1,9 +1,9 @@
-import express from "express";
-import "dotenv/config";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import userRoter from "./routes/user";
+import "dotenv/config";
+import express from "express";
 import { errorMiddleware } from "./middlewares/error";
+import userRoter from "./routes/user";
 import { connectDB } from "./utils/features";
 import createUser from "./seeders/user";
 
