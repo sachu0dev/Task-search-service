@@ -10,4 +10,10 @@ interface JwtPayload {
   _id: string;
 }
 
-export { IUser, JwtPayload };
+
+
+interface newRequest extends Request{
+  user:IUser;
+}
+
+export { IUser, JwtPayload  , newRequest };
