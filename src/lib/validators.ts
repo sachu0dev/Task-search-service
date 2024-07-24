@@ -4,7 +4,6 @@ const searchUserSchema = z.object({
     .string()
     .max(50, { message: "Query must be less than 50 characters" }),
 });
-
 const QueryParams = z.object({
   q: z.string(),
   page: z.string().optional().default("1"),
