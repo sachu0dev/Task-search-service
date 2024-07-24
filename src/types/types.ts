@@ -16,8 +16,9 @@ interface JwtPayload {
 }
 
 
-interface newRequest extends Request{
-  user:IUser;
+
+interface newRequest extends Request {
+  user?: Document & IUser;
 }
 
 
