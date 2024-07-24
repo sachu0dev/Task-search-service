@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { newRequest } from "../types/types";
 
-// Error middleware
 const errorMiddleware = (
   err: any,
   req: Request,
@@ -17,13 +16,7 @@ const errorMiddleware = (
 };
 
 const TryCatch =
-  (
-    fn: (
-      req: Request|newRequest,
-      res: Response,
-      next: NextFunction
-    ) => Promise<Response | void>
-  ) =>
+  (fn: (req: Request, res: Response, next: NextFunction) => Promise<void>) =>
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       await fn(req, res, next);

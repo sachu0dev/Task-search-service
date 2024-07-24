@@ -1,6 +1,6 @@
 import { Document } from "mongoose";
-import {Request} from "express"
 
+import { Request } from "express";
 interface IUser extends Document {
   name: string;
   username: string;
@@ -8,12 +8,14 @@ interface IUser extends Document {
 }
 
 
-interface newRequest extends Request{
-   user:IUser
-}
 
 interface JwtPayload {
   _id: string;
 }
 
-export { IUser, JwtPayload , newRequest};
+
+interface newRequest extends Request{
+  user:IUser;
+}
+
+export { IUser, JwtPayload  , newRequest };
