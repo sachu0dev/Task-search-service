@@ -13,7 +13,7 @@ interface JwtPayload {
 }
 
 interface newRequest extends Request {
-  user: IUser;
+  user?: Document & IUser;
 }
 
 export { IUser, JwtPayload, newRequest };
