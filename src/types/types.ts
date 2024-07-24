@@ -3,7 +3,7 @@ import { Request } from "express";
 interface IUser extends Document {
   name: string;
   username: string;
-  password: string;
+  password?: string;
 }
 
 interface JwtPayload {

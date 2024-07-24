@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
 
-// Error middleware
 const errorMiddleware = (
   err: any,
   req: Request,
@@ -16,7 +15,13 @@ const errorMiddleware = (
 };
 
 const TryCatch =
-  (fn: (req: Request, res: Response, next: NextFunction) => Promise<void>) =>
+  (
+    fn: (
+      req: Request,
+      res: Response,
+      next: NextFunction
+    ) => Promise<Response | void>
+  ) =>
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       await fn(req, res, next);

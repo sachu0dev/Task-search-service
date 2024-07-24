@@ -1,5 +1,4 @@
-import { hash } from "bcrypt-ts";
-import mongoose, { HookNextFunction, Schema, model } from "mongoose";
+import mongoose, { Schema, model, Document } from "mongoose";
 import { IUser } from "../types/types";
 
 // Define the user schema
@@ -17,16 +16,6 @@ const userSchema: Schema<IUser> = new Schema({
     type: String,
     required: true,
   },
-});
-
-userSchema.pre<IUser>("save", async function (next: HookNextFunction) {
-  if (!this.isModified("password")) return next();
-  try {
-    this.password = await hash(this.password, 10);
-    next();
-  } catch (error) {
-    next(error);
-  }
 });
 
 export const User = mongoose.models.User || model<IUser>("User", userSchema);
