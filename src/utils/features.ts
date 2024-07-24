@@ -6,13 +6,13 @@ const connectDB = async (url: string) => {
     await mongoose.connect(url);
     console.log("Database connected successfully");
 
-    // const collectionName = "users";
-    // const changeStream = mongoose.connection.collection(collectionName).watch();
+    const collectionName = "users";
+    const changeStream = mongoose.connection.collection(collectionName).watch();
 
-    // changeStream.on("change", async (change) => {
-    //   console.log("Change detected:", change);
-    //   await clearRedisCache();
-    // });
+    changeStream.on("change", async (change) => {
+      console.log("Change detected:", change);
+      await clearRedisCache();
+    });
   } catch (error) {
     console.error("Database connection error:", error);
     process.exit(1);

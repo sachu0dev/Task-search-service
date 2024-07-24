@@ -10,7 +10,9 @@ interface IUser extends Document {
 
 
 interface JwtPayload {
-  _id: string;
+  username: string;
+  iat: number;
+  exp: number;
 }
 
 
@@ -18,4 +20,5 @@ interface newRequest extends Request{
   user:IUser;
 }
 
-export { IUser, JwtPayload  , newRequest };
+
+export { IUser, JwtPayload, newRequest };
