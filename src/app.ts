@@ -2,14 +2,25 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import "dotenv/config";
 import express from "express";
+import rateLimit from "express-rate-limit";
 import { errorMiddleware } from "./middlewares/error";
-import userRoter from "./routes/user";
+import userRouter from "./routes/user";
 import { connectDB } from "./utils/features";
 
 const app = express();
 const port = 3000;
 
-// middlewares
+// Rate limiting middleware
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+app.use(limiter);
+
+// Middlewares
 app.use(express.json());
 app.use(cookieParser());
 app.use(
@@ -21,12 +32,12 @@ app.use(
 
 connectDB(process.env.MONGO_URI as string);
 
-// routes
+// Routes
 app.get("/", (req, res) => {
   res.send("Hello");
 });
 
-app.use("/api/v1/user", userRoter);
+app.use("/api/v1/user", userRouter);
 
 app.use(errorMiddleware);
 
