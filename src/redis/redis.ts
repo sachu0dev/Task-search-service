@@ -1,5 +1,4 @@
 import { createClient, RedisClientType } from "redis";
-import crypto from "crypto";
 
 const redisClient: RedisClientType = createClient({
   socket: {
