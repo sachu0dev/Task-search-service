@@ -3,7 +3,7 @@ import crypto from "crypto";
 
 const redisClient: RedisClientType = createClient({
   socket: {
-    host: "redis-server",
+    host: "localhost",
     port: 6379,
   },
   password: "PASSWORD",

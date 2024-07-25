@@ -15,9 +15,14 @@ const errorMiddleware = (
   });
 };
 
-
 const TryCatch =
-  (fn: (req: Request, res: Response, next: NextFunction) => Promise<void>) =>
+  (
+    fn: (
+      req: Request,
+      res: Response,
+      next: NextFunction
+    ) => Promise<void | Response>
+  ) =>
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       await fn(req, res, next);

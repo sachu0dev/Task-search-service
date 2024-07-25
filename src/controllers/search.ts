@@ -44,7 +44,7 @@ interface SearchResponse {
 }
 
 const searchUser = TryCatch(
-  async (req: Request, res:Response  , next: NextFunction)  => {
+  async (req: Request, res: Response, next: NextFunction) => {
     const queryParams = QueryParams.parse(req.query);
     const { q: query, page } = queryParams;
     const limit = 10;
