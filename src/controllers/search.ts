@@ -24,7 +24,7 @@ const getResults = async (
   try {
     const cachedData = await redisClient.get(cacheKey);
     if (cachedData) {
-      console.log("Data retrieved from Redis cache:", cachedData);
+      console.log("Data retrieved from Redis cache:", JSON.parse(cachedData));
       redisClient.expire(cacheKey, 300);
       return JSON.parse(cachedData) as UserSearchResult[];
     }
