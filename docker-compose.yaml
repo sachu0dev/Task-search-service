@@ -1,14 +1,14 @@
 version: '3'
 services:
   express:
-    build:
+    build: 
       context: .
       dockerfile: Dockerfile
     container_name: my-node-app
     ports:
       - "3000:3000"
     environment:
-      - REDIS_HOST=redis-server  # Set the hostname for Redis
+      - REDIS_HOST=redis-server  
     depends_on:
       - redis-server
 
