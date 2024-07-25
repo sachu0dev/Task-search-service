@@ -5,7 +5,7 @@ const redisClient: RedisClientType = createClient({
     host: "redis-server",
     port: 6379,
   },
-  password: "PASSWORD",
+  // password: "PASSWORD",
 });
 
 redisClient.on("error", (err: Error) => {
