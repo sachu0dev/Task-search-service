@@ -39,14 +39,19 @@ const newUser = TryCatch(
 const getUser = TryCatch(
   async (req: newRequest, res: Response, next: NextFunction) => {
     const { user } = req;
+    const {id} = req.params;
 
     if (!user) {
+      return next(new ErrorHandler("Unauthorised", 401));
+    }
+    const newUser = await User.findById(id);
+    if(!newUser){
       return next(new ErrorHandler("User not found", 404));
     }
 
     res.status(200).json({
       success: true,
-      user,
+      newUser,
     });
   }
 );

@@ -6,6 +6,7 @@ import { isAuthenticated } from "../middlewares/auth";
 const userRoter = express.Router();
 userRoter.post("/new", newUser);
 userRoter.use(isAuthenticated);
-userRoter.route("/me").get(getUser).put(updateUser).delete(deleteUser);
+userRoter.route("/me").put(updateUser).delete(deleteUser);
 userRoter.get("/", searchUser);
+userRoter.get("/:id" , getUser)
 export default userRoter;
