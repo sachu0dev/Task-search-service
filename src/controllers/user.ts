@@ -44,7 +44,7 @@ const getUser = TryCatch(
     if (!user) {
       return next(new ErrorHandler("Unauthorised", 401));
     }
-    const newUser = await User.findById(id);
+    const newUser = await User.findById(id).select("-password");
     if(!newUser){
       return next(new ErrorHandler("User not found", 404));
     }
@@ -63,19 +63,19 @@ const updateUser = TryCatch(
     const { user } = req;
 
     if (!user) {
-      return next(new ErrorHandler("User not found", 404));
+      return next(new ErrorHandler("Unauthorised", 401));
     }
     const parseResult = updateUserSchema.safeParse(body);
     if (!parseResult.success) {
       return next(new ErrorHandler(parseResult.error.errors[0].message, 400));
     }
 
-    const { name, username } = parseResult.data;
+    const { name, username , password } = parseResult.data;
 
     const getUser = await User.findOneAndUpdate(
       { _id: user._id },
-      { name, username }
-    );
+      { name, username , password }
+    ).select("-passwod");
 
     if (!user) {
       return next(new ErrorHandler("User not found", 404));
@@ -83,6 +83,7 @@ const updateUser = TryCatch(
 
     res.status(200).json({
       success: true,
+      getUser,
       message: "User updated successfully",
     });
   }
@@ -93,9 +94,9 @@ const deleteUser: RequestHandler = TryCatch(
     const { user } = req;
 
     if (!user) {
-      return next(new ErrorHandler("User not found", 404));
+      return next(new ErrorHandler("Unauthorised", 401));
     }
-
+    
     await User.findByIdAndDelete(user._id);
     res.status(200).json({
       success: true,
